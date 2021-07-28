@@ -2,14 +2,25 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.nbshoping">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
+        android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Nbshoping">
-        <activity android:name=".LoginRegActivity"></activity>
+        android:theme="@style/Theme.Nbshoping"
+        android:usesCleartextTraffic="true">
+
+        <activity android:name=".login.PersonCenterActivity"/>
+        <activity android:name=".AboutActivity"/>
+        <activity android:name=".login.LoginRegActivity" />
+
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -18,13 +18,13 @@
         android:layout_marginTop="20dp"/>
     <!--  可输入文本框  -->
     <EditText
-        android:id="@+id/frag_te_tel1"
+        android:id="@+id/frag_reg_et_tel1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/frag_reg_tv1"
         android:background="@drawable/et_bg"
         android:layout_alignBaseline="@+id/frag_reg_tv1"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:textColor="@color/nav_normal"
         android:layout_marginLeft="10dp"
         android:inputType="phone"
@@ -47,10 +47,9 @@
         android:layout_toRightOf="@+id/frag_reg_tv2"
         android:background="@drawable/et_bg"
         android:layout_alignBaseline="@+id/frag_reg_tv2"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:textColor="@color/nav_normal"
         android:layout_marginLeft="10dp"
-        android:inputType="textPassword"
         android:maxLength="18" />
 
     <TextView
@@ -70,7 +69,7 @@
         android:layout_toRightOf="@+id/frag_reg_tv3"
         android:background="@drawable/et_bg"
         android:layout_alignBaseline="@+id/frag_reg_tv3"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:textColor="@color/nav_normal"
         android:layout_marginLeft="10dp"
         android:inputType="textPassword"
@@ -93,7 +92,7 @@
         android:layout_toRightOf="@+id/frag_reg_tv4"
         android:background="@drawable/et_bg"
         android:layout_alignBaseline="@+id/frag_reg_tv4"
-        android:textSize="18dp"
+        android:textSize="16dp"
         android:textColor="@color/nav_normal"
         android:layout_marginLeft="10dp"
         android:inputType="textPassword"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical"
-    tools:context=".LoginRegActivity">
+    tools:context=".login.LoginRegActivity">
 
 
     <RelativeLayout
@@ -59,7 +59,7 @@
 
     <!--  滑动类型控件  -->
     <androidx.viewpager.widget.ViewPager
-        android:id="@+id/login_vp"
+        android:id="@+id/loginreg_vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

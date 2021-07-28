@@ -9,8 +9,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="230dp"
-        android:background="@color/nav_fouces">
+        android:background="@color/nav_fouces"
+        android:layout_height="230dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:padding="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/me_image"
+                android:id="@+id/me_head_image"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:layout_alignParentLeft="true"
@@ -28,10 +28,11 @@
                 android:src="@mipmap/icon" />
 
             <TextView
+                android:id="@+id/me_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_toRightOf="@+id/me_image"
+                android:layout_toRightOf="@+id/me_head_image"
                 android:paddingLeft="20dp"
                 android:text="请先登录"
                 android:textColor="@color/white"
@@ -47,7 +48,7 @@
 
 
         <Button
-            android:id="@+id/me_scar_btn"
+            android:id="@+id/me_spcar_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -59,10 +60,10 @@
             android:textSize="18sp" />
 
         <Button
-            android:id="@+id/me_shistory_btn"
+            android:id="@+id/me_sphistory_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/me_scar_btn"
+            android:layout_below="@+id/me_spcar_btn"
             android:background="@drawable/btn_bg1"
             android:gravity="fill"
             android:paddingLeft="10dp"
@@ -74,7 +75,7 @@
             android:id="@+id/me_person_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/me_shistory_btn"
+            android:layout_below="@+id/me_sphistory_btn"
             android:background="@drawable/btn_bg3"
             android:gravity="fill"
             android:paddingLeft="10dp"

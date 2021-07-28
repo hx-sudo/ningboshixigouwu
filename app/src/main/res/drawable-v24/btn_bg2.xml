@@ -12,6 +12,8 @@
             <padding android:bottom="3dp" android:left="5dp" android:right="5dp" android:top="2dp" />
         </shape>
     </item>
+
+
     <!--单击时是一个带圆角,边框的矩形-->
     <item android:state_pressed="true">
         <shape android:shape="rectangle">

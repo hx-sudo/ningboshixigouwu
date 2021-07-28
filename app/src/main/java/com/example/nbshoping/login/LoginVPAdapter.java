@@ -1,4 +1,4 @@
-package com.example.nbshoping;
+package com.example.nbshoping.login;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

@@ -12,7 +12,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import com.example.nbshoping.login.LoginRegActivity;
+import com.example.nbshoping.login.PersonCenterActivity;
+import com.example.nbshoping.login.UserBean;
+import com.example.nbshoping.utils.SaveUserUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,11 +29,14 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;//首页
     List<Fragment> fragmentList;//将当前acticity包含的fragment放到集合里
     FragmentManager fm;
+    private UserBean.DataBean userInfo;//之前登陆时保存的用户信息
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        userInfo = SaveUserUtils.getUserInfo(this);
         initView();
         setListener();
         initFragment();
@@ -103,15 +110,24 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case R.id.drawer_btn_login:
                     /*判断是否登录，是跳到个人中心，否跳到登录界面*/
-                    // TODO: 2021/7/27
-                    //跳转页面
-                    Intent intent =new Intent(MainActivity.this,LoginRegActivity.class);
-                    intent.putExtra("flag",0);
-                    startActivity(intent);
+                    if (userInfo == null) {
+                        // 跳转到登陆界面，当前内存中没有用户信息
+                        //跳转登录页面
+                        Intent intent = new Intent(MainActivity.this, LoginRegActivity.class);
+                        intent.putExtra("flag", 0);
+                        startActivity(intent);
+                    }else{
+                        //个人中心
+                        Intent intent=new Intent(MainActivity.this, PersonCenterActivity.class);
+                        startActivity(intent);
+                    }
 
                     break;
                 case R.id.drawer_btn_reg:
-                    intent =new Intent(MainActivity.this,LoginRegActivity.class);
+                    /*判断是否登录，是跳到个人中心，否跳到注册界面*/
+                    // TODO: 2021/7/28
+                    //跳转到注册界面
+                    Intent intent =new Intent(MainActivity.this,LoginRegActivity.class);
                     intent.putExtra("flag",1);
                     startActivity(intent);
 

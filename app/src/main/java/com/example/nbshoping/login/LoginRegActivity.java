@@ -1,17 +1,15 @@
-package com.example.nbshoping;
+package com.example.nbshoping.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
-import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.example.nbshoping.login.LoginFragment;
-import com.example.nbshoping.login.RegisterFragment;
+import com.example.nbshoping.R;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -109,7 +107,7 @@ public class LoginRegActivity extends AppCompatActivity {
     private void initView() {
         logintv = findViewById(R.id.login_tv_log);
         regtv = findViewById(R.id.reg_tv_log);
-        loginvp = findViewById(R.id.login_vp);
+        loginvp = findViewById(R.id.loginreg_vp);
 
     }
 }
