@@ -11,12 +11,11 @@ import com.example.nbshoping.login.UserBean;
  * 3.数据库存储
  * */
 public class SaveUserUtils {
-    private static  UserBean.DataBean data=null;//保存在内存中数据
+    private static UserBean.DataBean data = null;//保存在内存中数据
 
     //将登录信息保存到内存中
-    public static  boolean saveUserToMemory(UserBean.DataBean dataBean)
-    {
-        data=dataBean;
+    public static boolean saveUserToMemory(UserBean.DataBean dataBean) {
+        data = dataBean;
         return true;
 
     }
@@ -42,18 +41,16 @@ public class SaveUserUtils {
         editor.commit();
 
 
-
         //保存到内存
         saveUserToMemory(dataBean);
         return true;
     }
 
     //获取用户信息数据
-    public  static  UserBean.DataBean getUserDataFromFile(Context context )
-    {
+    public static UserBean.DataBean getUserDataFromFile(Context context) {
         //获取共享参数数据
-        SharedPreferences sharedPreferences=context.getSharedPreferences("user",context.MODE_PRIVATE);
-        int id=sharedPreferences.getInt("id",-1);//没有数据默认id为-1
+        SharedPreferences sharedPreferences = context.getSharedPreferences("user", context.MODE_PRIVATE);
+        int id = sharedPreferences.getInt("id", -1);//没有数据默认id为-1
         String phone = sharedPreferences.getString("phone", "");
         String password = sharedPreferences.getString("password", "");
         String name = sharedPreferences.getString("name", "");
@@ -61,7 +58,7 @@ public class SaveUserUtils {
         String nickname = sharedPreferences.getString("nickname", "");
         String question = sharedPreferences.getString("question", "");
         String answer = sharedPreferences.getString("answer", "");
-        UserBean.DataBean dataBean=new UserBean.DataBean();
+        UserBean.DataBean dataBean = new UserBean.DataBean();
         dataBean.setId(id);
         dataBean.setPhone(phone);
         dataBean.setPassword(password);
@@ -74,16 +71,27 @@ public class SaveUserUtils {
     }
 
     /*获取用户信息，先从内存获取，没有再从文件回去*/
-    public static  UserBean.DataBean getUserInfo(Context context){
+    public static UserBean.DataBean getUserInfo(Context context) {
         if (data != null) {//内存
             return data;
         }
-        UserBean.DataBean user=getUserDataFromFile(context);
-        if (user.getId()!=-1)
-        {
-            data=user;
+        UserBean.DataBean user = getUserDataFromFile(context);
+        if (user.getId() != -1) {
+            data = user;
             return data;//保存到内存，并返回
         }
         return null;
     }
+
+    /*清除内存和sharedpreference保存的user信息*/
+    public static void deleteUserInfo(Context context) {
+
+        SharedPreferences sharedPreferences = context.getSharedPreferences("user", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+        data = null;
+
+    }
+
 }

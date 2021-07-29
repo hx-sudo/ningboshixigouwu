@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.nbshoping.login.LoginRegActivity;
 import com.example.nbshoping.login.PersonCenterActivity;
@@ -23,35 +24,8 @@ public class MeFragment extends Fragment {
 
     Button spcarbtn, sphistorybtn, personbtn, aboutbtn, setbtn;//购物车，历史采购，个人中心，关于，设置按钮
     ImageView headiv;//头像
+    TextView nickname;
 
-//    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "param1";
-//    private static final String ARG_PARAM2 = "param2";
-//    private String mParam1;
-//    private String mParam2;
-
-//    public MeFragment() {
-//        // Required empty public constructor
-//    }
-//
-//
-//    public static MeFragment newInstance(String param1, String param2) {
-//        MeFragment fragment = new MeFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, param1);
-//        args.putString(ARG_PARAM2, param2);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
-//
-//    @Override
-//    public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        if (getArguments() != null) {
-//            mParam1 = getArguments().getString(ARG_PARAM1);
-//            mParam2 = getArguments().getString(ARG_PARAM2);
-//        }
-//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -59,10 +33,29 @@ public class MeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_me, container, false);
         userInfo = SaveUserUtils.getUserInfo(getContext());
-
         initView(view);
+
         return view;
     }
+
+    //我的-昵称显示
+    @Override
+    public void onResume() {
+        super.onResume();
+        setWelcomeText();
+
+    }
+    private void setWelcomeText() {
+        userInfo = SaveUserUtils.getUserInfo(getContext());
+        if (userInfo == null) {
+            // 当前没有用户信息
+            nickname.setText("未登录，请先登录！");
+        } else {
+            nickname.setText(userInfo.getNickname());
+        }
+    }
+
+
 
     private void initView(View view) {
         spcarbtn = view.findViewById(R.id.me_spcar_btn);
@@ -71,6 +64,8 @@ public class MeFragment extends Fragment {
         aboutbtn = view.findViewById(R.id.me_about_btn);
         setbtn = view.findViewById(R.id.me_set_btn);
         headiv = view.findViewById(R.id.me_head_image);
+        nickname=view.findViewById(R.id.me_nickname);
+
         spcarbtn.setOnClickListener(onClickListener);
         sphistorybtn.setOnClickListener(onClickListener);
         personbtn.setOnClickListener(onClickListener);
@@ -91,6 +86,8 @@ public class MeFragment extends Fragment {
                 case R.id.me_sphistory_btn:
                     break;
                 case R.id.me_person_btn:
+                    userInfo = SaveUserUtils.getUserInfo(getContext());
+
                     if (userInfo==null)
                     {
                         //登录界面
@@ -108,6 +105,8 @@ public class MeFragment extends Fragment {
                     startActivity(intent);
                     break;
                 case R.id.me_set_btn:
+                    intent=new Intent(getActivity(), SetActivity.class);
+                    startActivity(intent);
                     break;
                 case R.id.me_head_image:
                     break;

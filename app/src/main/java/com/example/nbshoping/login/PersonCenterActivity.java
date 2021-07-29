@@ -97,6 +97,7 @@ public class PersonCenterActivity extends BaseActivity {
                     break;
                 case R.id.center_iv_head:
                     //个人中心头像
+                    Toast.makeText(getApplicationContext(),"该功能还在完善中！",Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.center_iv_nickname_bt:
                     //个人中心名字
@@ -114,18 +115,42 @@ public class PersonCenterActivity extends BaseActivity {
                     break;
                 case R.id.center_iv_back:
                     //个人中心返回
-                    finish();
+                    issave();
+
                     break;
 
             }
         }
     };
 
+    //修改未保存
+    private void issave() {
+        nickname= String.valueOf(tvnickname.getText()).trim();
+        name= String.valueOf(tvname.getText()).trim();
+        address= String.valueOf(tvaddress.getText()).trim();
+        if (nickname != userInfo.getNickname()||name!=userInfo.getName()||address!=userInfo.getAddress()) {
+            //信息设置改变
+            new AlertDialog.Builder(this,R.style.UpdateDialogStyle)
+                    .setTitle("提示信息")
+                    .setMessage("信息已经修改未保存，是否退出？")
+                    .setIcon(android.R.drawable.ic_dialog_info)
+                    .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            //按下确定键后的事件
+                            finish();
+                        }
+                    }).setNegativeButton("取消", null).create().show();
+        }
+        finish();
+
+    }
+
     /*保存数据*/
     private void saveInfo() {
-        nickname= String.valueOf(tvnickname.getText());
-        name= String.valueOf(tvname.getText());
-        address= String.valueOf(tvaddress.getText());
+        nickname= String.valueOf(tvnickname.getText()).trim();
+        name= String.valueOf(tvname.getText()).trim();
+        address= String.valueOf(tvaddress.getText()).trim();
         if (false == judgeInput(nickname))
         {
             Toast.makeText(getApplicationContext(),"信息不能为空",Toast.LENGTH_SHORT).show();
@@ -133,7 +158,7 @@ public class PersonCenterActivity extends BaseActivity {
         }
         if (nickname == userInfo.getNickname()&&name==userInfo.getName()&&address==userInfo.getAddress()) {
             //todo 图片设置
-            //设置未改变
+            //信息设置未改变
             Toast.makeText(getApplicationContext(),"个人信息未改变......",Toast.LENGTH_SHORT).show();
             return;
         }
@@ -189,7 +214,7 @@ public class PersonCenterActivity extends BaseActivity {
         switch(code)
         {
             case 200:
-                // 保存修改信息
+                // 保存修改信息到本地和内存
                 userInfo.setNickname(nickname);
                 userInfo.setAddress(address);
                 userInfo.setName(name);

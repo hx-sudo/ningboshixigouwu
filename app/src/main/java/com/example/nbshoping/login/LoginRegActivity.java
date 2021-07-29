@@ -52,7 +52,6 @@ public class LoginRegActivity extends AppCompatActivity {
 
     }
 
-
     /*
      *声明viewerpaper的展示页
      */
@@ -63,8 +62,6 @@ public class LoginRegActivity extends AppCompatActivity {
         //将fragment放到viewpaper，展示到activity中
         LoginVPAdapter vpAdapter=new LoginVPAdapter(getSupportFragmentManager(),fragmentList);
         loginvp.setAdapter(vpAdapter);//设置适配器
-
-
 
     }
 

@@ -16,8 +16,10 @@
         <RadioGroup
             android:id="@+id/main_rg"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
             android:orientation="horizontal">
 
             <RadioButton
@@ -25,13 +27,13 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
                 android:button="@null"
-                android:drawableTop="@drawable/main_rb1"
                 android:checked="true"
-                android:textColor="@drawable/main_txt"
+                android:drawableTop="@drawable/main_rb1"
+                android:gravity="center"
                 android:text="首页"
-                android:textSize="12sp">
+                android:textColor="@drawable/main_txt"
+                android:textSize="10sp">
 
             </RadioButton>
 
@@ -40,12 +42,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
                 android:button="@null"
                 android:drawableTop="@drawable/main_rb2"
-                android:textColor="@drawable/main_txt"
+                android:gravity="center"
                 android:text="分类"
-                android:textSize="12sp">
+                android:textColor="@drawable/main_txt"
+                android:textSize="10sp">
 
             </RadioButton>
 
@@ -54,12 +56,12 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
                 android:button="@null"
                 android:drawableTop="@drawable/main_rb3"
-                android:textColor="@drawable/main_txt"
+                android:gravity="center"
                 android:text="我的"
-                android:textSize="12sp">
+                android:textColor="@drawable/main_txt"
+                android:textSize="10sp">
 
             </RadioButton>
 
@@ -69,10 +71,8 @@
             android:id="@+id/main_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/divider"
-            android:layout_above="@+id/main_rg"
-            android:layout_marginBottom="3dp"
-            android:layout_marginTop="3dp"/>
+            android:background="@color/whitesmoke"
+            android:layout_above="@+id/main_rg"/>
 
         <!--上部内容-->
         <LinearLayout
