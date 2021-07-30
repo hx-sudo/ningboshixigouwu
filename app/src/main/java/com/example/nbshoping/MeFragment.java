@@ -12,10 +12,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nbshoping.login.LoginRegActivity;
 import com.example.nbshoping.login.PersonCenterActivity;
 import com.example.nbshoping.login.UserBean;
+import com.example.nbshoping.setabout.AboutActivity;
+import com.example.nbshoping.setabout.SetActivity;
 import com.example.nbshoping.utils.SaveUserUtils;
 
 
@@ -23,8 +26,7 @@ public class MeFragment extends Fragment {
     private UserBean.DataBean userInfo;//之前登陆时保存的用户信息
 
     Button spcarbtn, sphistorybtn, personbtn, aboutbtn, setbtn;//购物车，历史采购，个人中心，关于，设置按钮
-    ImageView headiv;//头像
-    TextView nickname;
+    TextView nickname,more,idtel;
 
 
     @Override
@@ -50,8 +52,11 @@ public class MeFragment extends Fragment {
         if (userInfo == null) {
             // 当前没有用户信息
             nickname.setText("未登录，请先登录！");
+            idtel.setText("ID:");
         } else {
             nickname.setText(userInfo.getNickname());
+            idtel.setText("ID:"+userInfo.getPhone());
+
         }
     }
 
@@ -63,8 +68,11 @@ public class MeFragment extends Fragment {
         personbtn = view.findViewById(R.id.me_person_btn);
         aboutbtn = view.findViewById(R.id.me_about_btn);
         setbtn = view.findViewById(R.id.me_set_btn);
-        headiv = view.findViewById(R.id.me_head_image);
+//        headiv = view.findViewById(R.id.me_head_image);
         nickname=view.findViewById(R.id.me_nickname);
+        more=view.findViewById(R.id.me_more);
+        idtel=view.findViewById(R.id.me_idtel);
+
 
         spcarbtn.setOnClickListener(onClickListener);
         sphistorybtn.setOnClickListener(onClickListener);
@@ -72,7 +80,9 @@ public class MeFragment extends Fragment {
 
         aboutbtn.setOnClickListener(onClickListener);
         setbtn.setOnClickListener(onClickListener);
-        headiv.setOnClickListener(onClickListener);
+//        headiv.setOnClickListener(onClickListener);
+        more.setOnClickListener(onClickListener);
+        idtel.setOnClickListener(onClickListener);
 
     }
 
@@ -82,8 +92,12 @@ public class MeFragment extends Fragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.me_spcar_btn:
+                    Toast.makeText(getContext(), "当前功能还在完善中！", Toast.LENGTH_SHORT).show();
+
                     break;
                 case R.id.me_sphistory_btn:
+                    Toast.makeText(getContext(), "当前功能还在完善中！", Toast.LENGTH_SHORT).show();
+
                     break;
                 case R.id.me_person_btn:
                     userInfo = SaveUserUtils.getUserInfo(getContext());
@@ -108,7 +122,8 @@ public class MeFragment extends Fragment {
                     intent=new Intent(getActivity(), SetActivity.class);
                     startActivity(intent);
                     break;
-                case R.id.me_head_image:
+                default:
+                    Toast.makeText(getContext(), "当前功能还在完善中！", Toast.LENGTH_SHORT).show();
                     break;
 
             }

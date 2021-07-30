@@ -84,6 +84,8 @@ public class UpPwdVaActivity extends BaseActivity {
             }
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                Toast.makeText(getApplicationContext(), "未知问题，检查网络等！", Toast.LENGTH_SHORT).show();
+
             }
             @Override
             public void onCancelled(CancelledException cex) {

@@ -11,23 +11,23 @@
         android:id="@+id/RL_1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/nav_fouces">
+        android:background="@color/whitesmoke">
 
         <ImageView
             android:id="@+id/uppwd_iv_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/fanhui" />
+            android:src="@drawable/back" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="修改密码"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textStyle="" />
 
     </RelativeLayout>
 

@@ -12,12 +12,24 @@
         android:layout_height="230dp"
         android:background="@color/indianred">
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/me_more"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="更多"
+            android:textSize="18dp"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"/>
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:orientation="horizontal"
-            android:padding="10dp">
+            android:padding="20dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/me_head_image"
@@ -34,11 +46,24 @@
                 android:layout_gravity="center_vertical"
                 android:layout_toRightOf="@+id/me_head_image"
                 android:paddingLeft="20dp"
+                android:layout_marginTop="125dp"
                 android:text="请先登录"
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
-        </LinearLayout>
+            <TextView
+                android:id="@+id/me_idtel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_below="@id/me_nickname"
+                android:layout_toRightOf="@+id/me_head_image"
+                android:paddingLeft="20dp"
+                android:text="ID:"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                 />
+        </RelativeLayout>
     </RelativeLayout>
 
     <RelativeLayout
@@ -58,24 +83,36 @@
             android:text="购物车"
             android:textColor="@color/black"
             android:textSize="18sp" />
+        <TextView
+            android:id="@+id/l1"
+            android:layout_below="@+id/me_spcar_btn"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/whitesmoke" />
 
         <Button
             android:id="@+id/me_sphistory_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/me_spcar_btn"
+            android:layout_below="@+id/l1"
             android:background="@drawable/btn_bg1"
             android:gravity="fill"
             android:paddingLeft="10dp"
             android:text="历史购买"
             android:textColor="@color/black"
             android:textSize="18sp" />
+        <TextView
+            android:id="@+id/l2"
+            android:layout_below="@+id/me_sphistory_btn"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/whitesmoke" />
 
         <Button
             android:id="@+id/me_person_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/me_sphistory_btn"
+            android:layout_below="@+id/l2"
             android:background="@drawable/btn_bg3"
             android:gravity="fill"
             android:paddingLeft="10dp"

@@ -27,11 +27,11 @@ public class URLUtils {
     //查询所有的分类
     public static String queryAllCategory_url=PUBLIC_URL+"/biz/queryAllCategory";
     //通过分类查询对应的产品
-    public static String queryCommodityByCateId_url=PUBLIC_URL+"/biz/queryCommodityByCateId";
+    public static String queryCommodityByCateId_url=PUBLIC_URL+"/biz/queryCommodityByCateId?categoryId=";
     //商品模糊查询
-    public static String queryCommodityByName_url=PUBLIC_URL+"/biz/queryCommodityByName";
+    public static String queryCommodityByName_url=PUBLIC_URL+"/biz/queryCommodityByName?name=";
     //商品详情
-    public static String queryCommodityInfo_url=PUBLIC_URL+"/biz/queryCommodityInfo";
+    public static String queryCommodityInfo_url=PUBLIC_URL+"/biz/queryCommodityInfo?commodityId=";
     //热销产品
     public static String hotCommodity_url=PUBLIC_URL+"/biz/hotCommodity";
     // 产品推荐

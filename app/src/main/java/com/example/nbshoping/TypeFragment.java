@@ -3,51 +3,96 @@ package com.example.nbshoping;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.ListView;
 
+import com.example.nbshoping.goods.GoodsTypeFragment;
+import com.example.nbshoping.goods.TypeAdapter;
+import com.example.nbshoping.goods.TypeBean;
+import com.example.nbshoping.utils.BaseFragment;
+import com.example.nbshoping.utils.URLUtils;
+import com.google.gson.Gson;
 
-public class TypeFragment extends Fragment {
+import java.util.LinkedList;
+import java.util.List;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+/*分类
+ * */
+public class TypeFragment extends BaseFragment {
+    ListView typeLv;
+    EditText searchEt;//todo
+    List<TypeBean.DataBean> data;//数据源
+    private TypeAdapter typeAdapter;
+    private FragmentManager fm;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public TypeFragment() {
-        // Required empty public constructor
-    }
-
-
-    // TODO: Rename and change types and number of parameters
-    public static TypeFragment newInstance(String param1, String param2) {
-        TypeFragment fragment = new TypeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_type, container, false);
+        View view = inflater.inflate(R.layout.fragment_type, container, false);
+        initView(view);
+        fm = getChildFragmentManager();
+
+        //1.确定数据源
+        data = new LinkedList<>();
+        //2.设置适配器
+        typeAdapter = new TypeAdapter(getContext(), data);
+        typeLv.setAdapter(typeAdapter);
+        //3.联网
+        getNetword(URLUtils.queryAllCategory_url);
+        //4.设置点击事件
+        setListener();
+
+
+        return view;
+    }
+
+    /*点击右侧item，切换右侧的页面*/
+    private void changeRightPage(int position) {
+        //得到切换的数据
+        TypeBean.DataBean dataBean = data.get(position);
+        int id = dataBean.getId();
+        FragmentTransaction transaction = fm.beginTransaction();
+        GoodsTypeFragment gtfrag = GoodsTypeFragment.newInstance(id + "", "");
+        transaction.replace(R.id.frag_type_layout, gtfrag);
+        transaction.commit();
+
+    }
+
+    /*给listview每一项设置点击事件*/
+    private void setListener() {
+        typeLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                typeAdapter.setClickPoos(position);//点击事件发生，改变被点击位置，adapter内部监听处理点击状态颜色事件
+                changeRightPage(position);//点击切换商品页面， 切换右侧的页面
+
+            }
+        });
+    }
+
+    @Override
+    public void onSuccess(String result) {
+        super.onSuccess(result);
+        //解析数据
+        TypeBean typeBean = new Gson().fromJson(result, TypeBean.class);
+        List<TypeBean.DataBean> list = typeBean.getData();//获取网络数据
+        data.addAll(list);//将网络数据添加到listview的数据源中
+        typeAdapter.notifyDataSetChanged();//提示适配器更新数据源
+        changeRightPage(0);
+
+    }
+
+    private void initView(View view) {
+        typeLv = view.findViewById(R.id.frag_type_listv);
+        searchEt = view.findViewById(R.id.frag_type_sc_et);
     }
 }

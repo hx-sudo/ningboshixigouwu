@@ -1,6 +1,7 @@
 package com.example.nbshoping.utils;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -37,7 +38,7 @@ public class BaseFragment extends Fragment implements Callback.CommonCallback<St
     }
 
     //获取
-    public void getNetword(String url)
+    public void getNetword(String url)//无参格式?categoryId=";
     {
         //将url封装到请求参数中
         RequestParams requestParams = new RequestParams(url);
@@ -54,6 +55,8 @@ public class BaseFragment extends Fragment implements Callback.CommonCallback<St
     public void onError(Throwable ex, boolean isOnCallback) {
         //获取数据失败
         Log.i(TAG,"onError:"+ex.getMessage());
+        Toast.makeText(getContext(), "获取数据失败，检查网络等！", Toast.LENGTH_SHORT).show();
+
 
     }
 

@@ -3,11 +3,40 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".FPageFragment">
 
-    <TextView
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="40dp"
+        android:layout_margin="15dp">
+
+        <ImageView
+            android:id="@+id/fpage_scan_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingRight="20dp"
+            android:src="@drawable/scan_iv" />
+
+        <EditText
+            android:id="@+id/fpage_sc_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/fpage_scan_iv"
+            android:background="@drawable/et_bg"
+            android:drawableLeft="@drawable/search_iv"
+            android:layout_toLeftOf="@id/fpage_mes_iv"
+            android:hint="搜索你感兴趣的商品"
+            android:textColorHint="@color/nav_normal" />
+
+        <ImageView
+            android:id="@+id/fpage_mes_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/mes_iv" />
+    </RelativeLayout>
 
 </FrameLayout>
