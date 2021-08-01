@@ -83,9 +83,10 @@ public class GoodsTypeFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //点击事件发生，改变被点击位置position，adapter内部监听处理点击状态颜色事件
                 Log.i("点右侧击返回id：" , String.valueOf(data.get(position).getId()));//商品id
+                GoodsBean.DataBean dataBean=data.get(position);
                 //打开对应商品详情界面
                 Intent intent=new Intent(getContext(),GoodsDetailsActivity.class);
-                intent.putExtra("goodsId",data.get(position).getId());
+                intent.putExtra("goods",dataBean);
                 startActivity(intent);
 
             }

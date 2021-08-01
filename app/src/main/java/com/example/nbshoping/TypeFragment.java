@@ -6,12 +6,16 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.nbshoping.goods.GoodsTypeFragment;
 import com.example.nbshoping.goods.TypeAdapter;
@@ -55,6 +59,21 @@ public class TypeFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            //隐藏时所作的事情
+            searchEt.setText("");//搜索框恢复
+        } else {
+            //显示时所作的事情
+        }
+    }
+
     /*点击右侧item，切换右侧的页面*/
     private void changeRightPage(int position) {
         //得到切换的数据
@@ -94,5 +113,25 @@ public class TypeFragment extends BaseFragment {
     private void initView(View view) {
         typeLv = view.findViewById(R.id.frag_type_listv);
         searchEt = view.findViewById(R.id.frag_type_sc_et);
+
+        searchEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                if ((actionId == EditorInfo.IME_ACTION_UNSPECIFIED || actionId == EditorInfo.IME_ACTION_SEARCH) && keyEvent != null) {
+                    //点击搜索要做的操作
+                    search();
+                    return true;
+                }
+                return false;
+            }
+        });
+
     }
+    //点击搜索要做的操作
+    private void search() {
+        // TODO: 2021/8/2  
+        Toast.makeText(getContext(),"开始搜索",Toast.LENGTH_SHORT).show();
+
+    }
+
 }

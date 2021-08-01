@@ -40,13 +40,13 @@ public class URLUtils {
     public static String guessYouLike_url=PUBLIC_URL+"/biz/guessYouLike";
 
     //购物相关
-    //添加购物车
+    //添加购物车 post
     public static String insertShoppingCar_url=PUBLIC_URL+"/trade/insertShoppingCar";
     // 查询购物车
     public static String queryShoppingCar_url=PUBLIC_URL+"/trade/queryShoppingCar";
     // 购物车中商品下单支付
     public static String orderShopping_url=PUBLIC_URL+"/trade/orderShopping";
-    //直接购买（不进入购物车）
+    //直接购买（不进入购物车） post
     public static String insertBought_url=PUBLIC_URL+"/trade/insertBought";
     // 查询已购买商品
     public static String queryBougth_url=PUBLIC_URL+"/trade/querybougth";

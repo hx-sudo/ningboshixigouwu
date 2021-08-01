@@ -1,20 +1,15 @@
 package com.example.nbshoping.login;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nbshoping.MainActivity;
 import com.example.nbshoping.R;
 import com.example.nbshoping.utils.BaseActivity;
-import com.example.nbshoping.utils.EditUserDialog;
 import com.example.nbshoping.utils.SaveUserUtils;
 import com.example.nbshoping.utils.URLUtils;
 import com.google.gson.Gson;
@@ -24,7 +19,7 @@ import org.xutils.x;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
+
 /*密保：
 *1显示
 *2验证
@@ -164,7 +159,6 @@ public class UpPwdVaActivity extends BaseActivity {
 
     /*密保验证成功，进入密码修改*/
     private void fixpwd() {
-        //todo
         Intent intent =new Intent(getApplicationContext(),UpPwdActivity.class);
         startActivity(intent);
         finish();

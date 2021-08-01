@@ -3,13 +3,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whitesmoke">
+    android:background="@drawable/jianbian_bg1">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:background="@color/indianred">
+        >
 
         <TextView
             android:id="@+id/drwer_tv_name"

@@ -27,7 +27,10 @@
             android:background="@drawable/et_bg"
             android:drawableLeft="@drawable/search_iv"
             android:layout_toLeftOf="@id/frag_type_mes_iv"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
             android:hint="搜索你感兴趣的商品"
+            android:textColor="@color/nav_normal"
             android:textColorHint="@color/nav_normal" />
 
         <ImageView

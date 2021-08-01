@@ -157,7 +157,6 @@ public class PersonCenterActivity extends BaseActivity {
             return;
         }
         if (nickname == userInfo.getNickname()&&name==userInfo.getName()&&address==userInfo.getAddress()) {
-            //todo 图片设置
             //信息设置未改变
             Toast.makeText(getApplicationContext(),"个人信息未改变......",Toast.LENGTH_SHORT).show();
             return;

@@ -136,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
                     isRegister();
                     break;
                 case R.id.drawer_btn_cancle:
-                    //todo 注销账户
                     /*登录状态下退出*/
                     exitLogin();
 

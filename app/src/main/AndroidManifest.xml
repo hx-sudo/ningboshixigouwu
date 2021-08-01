@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".MyApp"
@@ -15,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nbshoping"
         android:usesCleartextTraffic="true">
-        <activity android:name=".goods.GoodsDetailsActivity"></activity>
+        <activity android:name=".goods.BoughtActivity"></activity>
+        <activity android:name=".goods.GoodsDetailsActivity" />
         <activity android:name=".setabout.SetActivity" />
         <activity android:name=".login.UpPwdActivity" />
         <activity android:name=".login.UpPwdVaActivity" />
