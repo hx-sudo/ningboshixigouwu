@@ -9,4 +9,14 @@
         <item name="colorControlNormal">@color/nav_normal</item>
         <item name="colorControlActivated">@color/darkorange</item>
     </style>
+
+<!--    tablayout-->
+    <style name="TabLayoutTextUnSelected">
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="TabLayoutTextSelected">
+        <item name="android:textColor">@color/darkorange</item>
+    </style>
+
+
 </resources>

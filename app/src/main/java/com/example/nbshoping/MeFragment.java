@@ -10,15 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nbshoping.login.LoginRegActivity;
 import com.example.nbshoping.login.PersonCenterActivity;
 import com.example.nbshoping.login.UserBean;
-import com.example.nbshoping.setabout.AboutActivity;
-import com.example.nbshoping.setabout.SetActivity;
+import com.example.nbshoping.me.AboutActivity;
+import com.example.nbshoping.me.SetActivity;
 import com.example.nbshoping.utils.SaveUserUtils;
 
 

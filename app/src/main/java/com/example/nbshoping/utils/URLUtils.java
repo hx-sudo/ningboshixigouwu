@@ -7,6 +7,7 @@ public class URLUtils {
 
 //    public  static String PUBLIC_URL="http://192.168.10.13:8080/beikeMarke";    //内网公共部分
     public  static String PUBLIC_URL="http://47.100.26.130:8085/beikeMarke";//外网公共部分
+//    public  static String PUBLIC_URL="http://192.168.13.34:8080/beikeMarket";//内网公共部分2
 
     //个人相关
     //注册接口
@@ -28,8 +29,8 @@ public class URLUtils {
     public static String queryAllCategory_url=PUBLIC_URL+"/biz/queryAllCategory";
     //通过分类查询对应的产品
     public static String queryCommodityByCateId_url=PUBLIC_URL+"/biz/queryCommodityByCateId?categoryId=";
-    //商品模糊查询
-    public static String queryCommodityByName_url=PUBLIC_URL+"/biz/queryCommodityByName?name=";
+    //商品模糊查询get
+    public static String queryCommodityByName_url=PUBLIC_URL+"/biz/queryCommodityByName";
     //商品详情
     public static String queryCommodityInfo_url=PUBLIC_URL+"/biz/queryCommodityInfo?commodityId=";
     //热销产品
@@ -48,7 +49,7 @@ public class URLUtils {
     public static String orderShopping_url=PUBLIC_URL+"/trade/orderShopping";
     //直接购买（不进入购物车） post
     public static String insertBought_url=PUBLIC_URL+"/trade/insertBought";
-    // 查询已购买商品
+    // 查询已购买商品,内网
     public static String queryBougth_url=PUBLIC_URL+"/trade/querybougth";
 
 

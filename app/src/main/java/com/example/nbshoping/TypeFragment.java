@@ -1,5 +1,6 @@
 package com.example.nbshoping;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nbshoping.goods.GoodsTypeFragment;
+import com.example.nbshoping.goods.SearchActivity;
 import com.example.nbshoping.goods.TypeAdapter;
 import com.example.nbshoping.goods.TypeBean;
 import com.example.nbshoping.utils.BaseFragment;
@@ -117,7 +119,8 @@ public class TypeFragment extends BaseFragment {
         searchEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
-                if ((actionId == EditorInfo.IME_ACTION_UNSPECIFIED || actionId == EditorInfo.IME_ACTION_SEARCH) && keyEvent != null) {
+
+                if (keyEvent != null && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
                     //点击搜索要做的操作
                     search();
                     return true;
@@ -129,8 +132,11 @@ public class TypeFragment extends BaseFragment {
     }
     //点击搜索要做的操作
     private void search() {
-        // TODO: 2021/8/2  
-        Toast.makeText(getContext(),"开始搜索",Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(getActivity(), SearchActivity.class);
+        intent.putExtra("goodsname",searchEt.getText().toString().trim());
+        startActivity(intent);
+        Toast.makeText(getContext(),"分类",Toast.LENGTH_SHORT).show();
+
 
     }
 

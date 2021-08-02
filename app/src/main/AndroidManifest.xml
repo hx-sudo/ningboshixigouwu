@@ -16,13 +16,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nbshoping"
         android:usesCleartextTraffic="true">
-        <activity android:name=".goods.BoughtActivity"></activity>
+        <activity android:name=".me.ShoppingHstActivity"></activity>
+        <activity android:name=".goods.SearchActivity" />
+        <activity android:name=".goods.BoughtActivity" />
         <activity android:name=".goods.GoodsDetailsActivity" />
-        <activity android:name=".setabout.SetActivity" />
+        <activity android:name=".me.SetActivity" />
         <activity android:name=".login.UpPwdActivity" />
         <activity android:name=".login.UpPwdVaActivity" />
         <activity android:name=".login.PersonCenterActivity" />
-        <activity android:name=".setabout.AboutActivity" />
+        <activity android:name=".me.AboutActivity" />
         <activity android:name=".login.LoginRegActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

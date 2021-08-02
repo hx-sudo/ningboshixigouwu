@@ -57,7 +57,7 @@
             android:layout_weight="1"
             android:background="@color/whitesmoke"
             android:divider="@color/white"
-            android:dividerHeight="1dp" />
+            android:dividerHeight="5dp" />
 
         <LinearLayout
             android:id="@+id/frag_type_layout"

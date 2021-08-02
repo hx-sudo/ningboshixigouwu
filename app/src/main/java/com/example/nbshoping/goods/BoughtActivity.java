@@ -82,12 +82,15 @@ public class BoughtActivity extends BaseActivity {
                     break;
 
                 case  R.id.bought_ensure:
-                    //todo 支付点击
+                    // 支付点击
+                    if (false==judgeInput(phoneEt.getText().toString().trim(),nameEt.getText().toString().trim(),addressEt.getText().toString().trim()))
+                       break;
                     Map<String,String> map=new HashMap<>();
                     map.put("count",count+"");
                     map.put("commodityId",commodityId+"");
                     map.put("userId",userInfo.getId()+"");
                     postNetwork(URLUtils.insertBought_url,map);
+                    //todo 打开购买详情，关闭finish
                     break;
             }
 

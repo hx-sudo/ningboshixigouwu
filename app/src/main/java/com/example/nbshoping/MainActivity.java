@@ -11,12 +11,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.nbshoping.goods.SearchActivity;
 import com.example.nbshoping.login.LoginRegActivity;
 import com.example.nbshoping.login.PersonCenterActivity;
 import com.example.nbshoping.login.UserBean;
@@ -30,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     RadioGroup rg;//首页，分类，我的
     Button fpagebtn, typebtn, mainbtn, loginbtn, regbtn, canclebtn;//首页，分类，我的，登录，注册，注销
     TextView loginntv;//欢迎登录语句
+    EditText searchEt;//搜索框
     DrawerLayout drawerLayout;//首页
     List<Fragment> fragmentList;//将当前acticity包含的fragment放到集合里
     FragmentManager fm;
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         userInfo = SaveUserUtils.getUserInfo(this);
+
         initView();
         setListener();
         initFragment();
@@ -261,7 +267,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
     //查找控件
     private void initView() {
         rg = findViewById(R.id.main_rg);
@@ -273,7 +278,10 @@ public class MainActivity extends AppCompatActivity {
         canclebtn = findViewById(R.id.drawer_btn_cancle);
         loginntv = findViewById(R.id.drwer_tv_name);
         drawerLayout = findViewById(R.id.main_drawer);
+
+
     }
+
 
 
 }

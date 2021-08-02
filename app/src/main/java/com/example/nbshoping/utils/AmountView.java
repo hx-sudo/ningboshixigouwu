@@ -55,6 +55,8 @@ public class AmountView extends LinearLayout implements View.OnClickListener, Te
 
         countTv=findViewById(R.id.addcar_count_tv);
         moneyTv=findViewById(R.id.addcar_money_tv);
+        moneyTv.setText("￥"+String.valueOf(price*amount));//价格展示
+        countTv.setText("已选"+String.valueOf(amount) + "件");
 
 
         TypedArray obtainStyledAttributes = getContext().obtainStyledAttributes(attrs, R.styleable.AmountView);
@@ -86,6 +88,8 @@ public class AmountView extends LinearLayout implements View.OnClickListener, Te
     public void setGoods_storage(int goods_storage,double price) {
         this.goods_storage = goods_storage;
         this.price=price;
+        moneyTv.setText("￥"+String.valueOf(price*amount));//价格展示
+        countTv.setText("已选"+String.valueOf(amount) + "件");
     }
 
     @Override

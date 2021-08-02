@@ -1,4 +1,4 @@
-package com.example.nbshoping.setabout;
+package com.example.nbshoping.me;
 
 import androidx.appcompat.app.AppCompatActivity;
 
