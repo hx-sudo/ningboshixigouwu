@@ -43,20 +43,7 @@ public class BaseActivity extends AppCompatActivity implements Callback.CommonCa
         RequestParams requestParams = new RequestParams(url);
         x.http().get(requestParams,this);
     }
-//    public void getNetword(String url,Map<String, String> map)
-//    {
-//        //将url封装到请求参数中
-//        RequestParams requestParams = new RequestParams(url);
-//        //提交的键值对放到请求参数中
-//        Set<String> keySet = map.keySet();
-//        for (String key : keySet) {
-//            String val = map.get(key);
-//            requestParams.addParameter(key, val);
-//        }
-//        requestParams.setAsJsonContent(true);//设置内容，形式
-//        requestParams.setBodyContentType("application/json;charset=utf-8");
-//        x.http().get(requestParams,this);
-//    }
+
 
     @Override
     public void onSuccess(String result) {
@@ -68,7 +55,7 @@ public class BaseActivity extends AppCompatActivity implements Callback.CommonCa
     public void onError(Throwable ex, boolean isOnCallback) {
         //获取数据失败
         Log.i(TAG,"onError:"+ex.getMessage());
-        Toast.makeText(getApplicationContext(), "获取数据失败，检查网络等！", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(), "获取数据失败，检查网络！", Toast.LENGTH_SHORT).show();
     }
 
     @Override

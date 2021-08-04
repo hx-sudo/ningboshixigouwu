@@ -90,7 +90,7 @@ public class BoughtActivity extends BaseActivity {
                     map.put("commodityId",commodityId+"");
                     map.put("userId",userInfo.getId()+"");
                     postNetwork(URLUtils.insertBought_url,map);
-                    //todo 打开购买详情，关闭finish
+                    // 打开购买详情，关闭finish
                     break;
             }
 
@@ -119,6 +119,7 @@ public class BoughtActivity extends BaseActivity {
         switch (bean.getCode()) {
             case 200:
                 Toast.makeText(getApplicationContext(), "购买成功！", Toast.LENGTH_SHORT).show();
+                finish();
                 break;
 
             default: //

@@ -67,16 +67,25 @@
                 android:background="@color/white"
                 android:gravity="center"
                 android:orientation="horizontal" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/whitesmoke"
+                />
 
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/fpage_type_vp"
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="180dp">
 
 
             </androidx.viewpager.widget.ViewPager>
 
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/whitesmoke"
+                />
 
             <TextView
                 android:layout_width="wrap_content"

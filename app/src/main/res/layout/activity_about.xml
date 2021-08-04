@@ -85,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="741宿舍 版权所有"
+        android:text="第一小组 版权所有"
         android:textColor="#A9A9A9 "
         android:textStyle="normal" />
 

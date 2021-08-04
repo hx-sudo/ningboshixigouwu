@@ -9,9 +9,12 @@ import androidx.viewpager.widget.ViewPager;
 import android.app.TabActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -42,10 +45,8 @@ public class SearchActivity extends BaseActivity  {
     private ListView listView;
     private CustomAdapter adapter;
     List<GoodsBean.DataBean> data;//数据源
+    EditText searchEt;
     String searchname;
-
-
-
 
 
     @Override
@@ -79,7 +80,10 @@ public class SearchActivity extends BaseActivity  {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 //点击事件发生
-                Toast.makeText(getApplicationContext(),"点击了："+data.get(position).getName(),Toast.LENGTH_SHORT).show();
+                //打开对应商品详情界面
+                Intent intent=new Intent(getApplicationContext(),GoodsDetailsActivity.class);
+                intent.putExtra("goods",data.get(position));
+                startActivity(intent);
 
             }
         });
@@ -115,7 +119,11 @@ public class SearchActivity extends BaseActivity  {
 
     //初始联网
     private void initNet() {
-
+        if (TextUtils.isEmpty(searchname))
+        {
+            Toast.makeText(getApplicationContext(),"请输入搜索内容！",Toast.LENGTH_SHORT).show();
+            return;
+        }
         //将url封装到请求参数中
         RequestParams requestParams = new RequestParams(URLUtils.queryCommodityByName_url);
         //提交的键值对放到请求参数中
@@ -131,8 +139,13 @@ public class SearchActivity extends BaseActivity  {
                 switch (code) {
                     case 200:
                         List<GoodsBean.DataBean> list=bean.getData();
+                        data.clear();
                         data.addAll(list);
                         adapter.notifyDataSetChanged();
+                        if (list.size()==0)
+                        {
+                            Toast.makeText(getApplicationContext(),"搜索不到该产品信息！",Toast.LENGTH_SHORT).show();
+                        }
                         break;
                     case 400: //
                         Toast.makeText(getApplicationContext(), "参数错误！", Toast.LENGTH_SHORT).show();
@@ -160,7 +173,8 @@ public class SearchActivity extends BaseActivity  {
         tabLayout = findViewById(R.id.tab_search_layout);
         back=findViewById(R.id.search_back_iv);
         listView=findViewById(R.id.tab_search_list);
-
+        searchEt=findViewById(R.id.search_sc_et);
+        searchEt.setText(searchname+"");
 
 
         //返回
@@ -170,6 +184,22 @@ public class SearchActivity extends BaseActivity  {
                 finish();
             }
         });
+
+        searchEt.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+
+                if (keyEvent != null && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
+                    //点击搜索要做的操作
+                    searchname=searchEt.getText().toString().trim();
+                    initNet();//联网查询
+                    return true;
+                }
+                return false;
+            }
+        });
     }
+
+
 
 }

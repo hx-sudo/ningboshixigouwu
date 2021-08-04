@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     List<Fragment> fragmentList;//将当前acticity包含的fragment放到集合里
     FragmentManager fm;
     private UserBean.DataBean userInfo;//之前登陆时保存的用户信息
+    ImageView headiv;
 
 
     @Override
@@ -70,6 +72,9 @@ public class MainActivity extends AppCompatActivity {
         } else {
             loginntv.setText(userInfo.getNickname());
         }
+        MeFragment meFragment=(MeFragment)fragmentList.get(2);
+        meFragment.setHeadText();
+
 
 
     }
@@ -179,6 +184,9 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, LoginRegActivity.class);
                             intent.putExtra("flag", 0);
                             startActivity(intent);
+
+
+
                         }
                     })
                     .create()
@@ -278,6 +286,7 @@ public class MainActivity extends AppCompatActivity {
         canclebtn = findViewById(R.id.drawer_btn_cancle);
         loginntv = findViewById(R.id.drwer_tv_name);
         drawerLayout = findViewById(R.id.main_drawer);
+        headiv=findViewById(R.id.me_head_image);
 
 
     }

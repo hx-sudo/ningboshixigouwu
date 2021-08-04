@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="@color/white"
-    tools:context=".me.ShoppingHstActivity">
-
+    tools:context=".fpage.CategoryActivity">
     <RelativeLayout
-        android:id="@+id/sphst_title"
+        android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/whitesmoke">
 
         <ImageView
-            android:id="@+id/sphst_iv_back"
+            android:id="@+id/category_iv_back"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="10dp"
@@ -24,28 +24,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="历史订单"
+            android:text="商品分类"
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="" />
 
 
     </RelativeLayout>
-    <ListView
-
-        android:id="@+id/sphst_listv"
+    <LinearLayout
+        android:id="@+id/category_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_below="@id/sphst_title"
-        android:cacheColorHint="@color/black"
-        android:divider="@color/whitesmoke"
-        android:dividerHeight="5dp"
-
-        />
-
-
-
-
-
-</RelativeLayout>
+        android:orientation="vertical"/>
+</LinearLayout>

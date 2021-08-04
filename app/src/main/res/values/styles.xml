@@ -17,6 +17,11 @@
     <style name="TabLayoutTextSelected">
         <item name="android:textColor">@color/darkorange</item>
     </style>
+<!--checkbox-->
+    <style name="MyCheckBox" >
+        <item name="colorControlNormal">@color/nav_normal</item>
+        <item name="colorControlActivated">@color/red</item>
+    </style>
 
 
 </resources>

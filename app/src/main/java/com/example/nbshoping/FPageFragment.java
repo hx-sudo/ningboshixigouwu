@@ -18,15 +18,21 @@ import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.webkit.URLUtil;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nbshoping.fpage.BannerAdapter;
+import com.example.nbshoping.fpage.FPTypeVPAdapter;
+import com.example.nbshoping.fpage.FPtypeAdapter;
 import com.example.nbshoping.fpage.HotFragment;
 import com.example.nbshoping.goods.SearchActivity;
+import com.example.nbshoping.goods.TypeBean;
+import com.example.nbshoping.utils.BaseFragment;
 import com.example.nbshoping.utils.URLUtils;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +40,7 @@ import java.util.List;
 /**
  * 首页碎片
  */
-public class FPageFragment extends Fragment {
+public class FPageFragment extends BaseFragment {
 
     private boolean ischange = false;//刷新fragment标志
 
@@ -45,20 +51,24 @@ public class FPageFragment extends Fragment {
     List<ImageView> pointList;//小圆点
     int resId[] = {R.mipmap.ad1, R.mipmap.ad2, R.mipmap.ad3, R.mipmap.ad4, R.mipmap.ad5};//数据源加载图片
 
+    List<GridView> typeList;//首页分类图标数据源
+    int pagesize = 8;//每一个viewpaper的个数
+    int totalpage;//viewpaper页数
+
 
     //定时器，滑动banner条目
-    Handler handler=new Handler(){
+    Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
-            if (msg.what ==1) {
-                int currentItem=bannerVp.getCurrentItem();//当前滑到的页
-                if (currentItem == bannerList.size()-1) {//滑倒最后页，滑倒第一页
+            if (msg.what == 1) {
+                int currentItem = bannerVp.getCurrentItem();//当前滑到的页
+                if (currentItem == bannerList.size() - 1) {//滑倒最后页，滑倒第一页
                     bannerVp.setCurrentItem(0);
-                }else {
+                } else {
                     currentItem++;
                     bannerVp.setCurrentItem(currentItem);//自动下一页
                 }
-                handler.sendEmptyMessageDelayed(1,5000);
+                handler.sendEmptyMessageDelayed(1, 5000);
             }
         }
     };
@@ -72,14 +82,49 @@ public class FPageFragment extends Fragment {
 
         loadFragment();
         setBannerPager();//设置中间左右滑动的viewpager
+        getNetword(URLUtils.queryAllCategory_url);//首页分类
 
         return view;
     }
 
+    //设置首页分类方法
+    private void setTypePaper(List<TypeBean.DataBean> list) {
+        typeList = new ArrayList<>();//存储viewpaper的每一页
+        int size = list.size();
+        totalpage = (int) Math.ceil(size * 1.0 /pagesize);
+        for (int i = 0; i < totalpage; i++) {
+            GridView gridView=new GridView(getContext());
+            LinearLayout.LayoutParams lp=new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            lp.setMargins(5,5,5,5);
+            gridView.setLayoutParams(lp);
+            gridView.setNumColumns(pagesize/2);//列
+            //设置适配器
+            FPtypeAdapter adapter=new FPtypeAdapter(getContext(),list,i,pagesize);
+            gridView.setAdapter(adapter);
+            typeList.add(gridView);
+
+        }
+        //设置viewpaper的适配器
+        FPTypeVPAdapter adapter=new FPTypeVPAdapter(typeList);
+        typeVp.setAdapter(adapter);
+
+
+    }
+
+    @Override
+    public void onSuccess(String result) {
+        super.onSuccess(result);
+        TypeBean typeBean = new Gson().fromJson(result, TypeBean.class);
+        List<TypeBean.DataBean> list = typeBean.getData();//获取访问数据
+        if (list != null) {
+            setTypePaper(list);
+        }
+
+    }
 
     //设置中间左右滑动的viewpager
     private void setBannerPager() {
-        handler.sendEmptyMessageDelayed(1,5000);//第一次发生消息
+        handler.sendEmptyMessageDelayed(1, 5000);//第一次发生消息
         //数据源
         bannerList = new ArrayList<>();
         pointList = new ArrayList<>();
@@ -95,7 +140,7 @@ public class FPageFragment extends Fragment {
             //小点点
             ImageView piv = new ImageView(getContext());
             LinearLayout.LayoutParams pparams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            pparams.setMargins(0,0,8,0);//外边距
+            pparams.setMargins(0, 0, 8, 0);//外边距
             piv.setLayoutParams(pparams);
             piv.setImageResource(R.mipmap.page__normal_indicator);
             pointList.add(piv);//放到集合中，统一管理
@@ -103,7 +148,7 @@ public class FPageFragment extends Fragment {
         }
 
         //设置适配器
-        BannerAdapter bannerAdapter=new BannerAdapter(bannerList);
+        BannerAdapter bannerAdapter = new BannerAdapter(bannerList);
         bannerVp.setAdapter(bannerAdapter);
         //小点点第一个选中
         pointList.get(0).setImageResource(R.mipmap.page__selected_indicator);
@@ -111,9 +156,9 @@ public class FPageFragment extends Fragment {
         bannerVp.addOnPageChangeListener(listener);
 
 
-
     }
-    ViewPager.OnPageChangeListener listener=new ViewPager.SimpleOnPageChangeListener(){
+
+    ViewPager.OnPageChangeListener listener = new ViewPager.SimpleOnPageChangeListener() {
 
         @Override
         public void onPageSelected(int position) {
@@ -132,7 +177,6 @@ public class FPageFragment extends Fragment {
         transaction.add(R.id.fpage_hot_layput, HotFragment.newInstance(URLUtils.hotCommodity_url, ""));
         transaction.add(R.id.fpage_hot_recommendt, HotFragment.newInstance(URLUtils.recommendCommodity_url, ""));
         transaction.commit();
-
 
     }
 
@@ -162,8 +206,6 @@ public class FPageFragment extends Fragment {
             @Override
             public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
                 if (keyEvent != null && keyEvent.getKeyCode() == KeyEvent.KEYCODE_ENTER && keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-
-//                    if ((actionId == EditorInfo.IME_ACTION_UNSPECIFIED || actionId == EditorInfo.IME_ACTION_SEARCH) && keyEvent.getKeyCode() == KeyEvent.ACTION_UP) {
                     //点击搜索要做的操作
                     search();
                     return true;
@@ -179,7 +221,6 @@ public class FPageFragment extends Fragment {
         Intent intent = new Intent(getActivity(), SearchActivity.class);
         intent.putExtra("goodsname", searchEt.getText().toString().trim());
         startActivity(intent);
-        Toast.makeText(getContext(), "首页", Toast.LENGTH_SHORT).show();
 
     }
 }

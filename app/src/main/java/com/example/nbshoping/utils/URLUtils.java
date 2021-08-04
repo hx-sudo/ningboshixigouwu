@@ -1,12 +1,15 @@
 package com.example.nbshoping.utils;
 
+import android.content.Context;
+
+import java.io.File;
+
 /*
 *网络部分url
  */
 public class URLUtils {
 
-//    public  static String PUBLIC_URL="http://192.168.10.13:8080/beikeMarke";    //内网公共部分
-    public  static String PUBLIC_URL="http://47.100.26.130:8085/beikeMarke";//外网公共部分
+    public  static String PUBLIC_URL="http://47.100.26.130:8085/beikeMarket";//外网公共部分
 //    public  static String PUBLIC_URL="http://192.168.13.34:8080/beikeMarket";//内网公共部分2
 
     //个人相关
@@ -44,13 +47,19 @@ public class URLUtils {
     //添加购物车 post
     public static String insertShoppingCar_url=PUBLIC_URL+"/trade/insertShoppingCar";
     // 查询购物车
-    public static String queryShoppingCar_url=PUBLIC_URL+"/trade/queryShoppingCar";
-    // 购物车中商品下单支付
-    public static String orderShopping_url=PUBLIC_URL+"/trade/orderShopping";
+    public static String queryShoppingCar_url=PUBLIC_URL+"/trade/queryShoppingCar?userId=";
+    // 购物车中商品下单支付 post
+    public static String orderShopping_url=PUBLIC_URL+"/trade/orderShopping?id=?userId=?commodityId=?commodityId=";
     //直接购买（不进入购物车） post
     public static String insertBought_url=PUBLIC_URL+"/trade/insertBought";
     // 查询已购买商品,内网
-    public static String queryBougth_url=PUBLIC_URL+"/trade/querybougth";
+    public static String queryBougth_url=PUBLIC_URL+"/trade/querybougth?userId=";
 
 
+    //图片本地地址
+    public static  String getImgPath(Context context,String name)
+    {
+        String path=context.getExternalCacheDir()+ File.separator+name+".jpg";
+        return  path;
+    }
 }

@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whitesmoke"
+    android:background="@color/white"
     android:orientation="vertical">
-    <!-- 注意下面这个布局的宽度是match_parent的，也就是占用整个控件宽度-->
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -12,77 +12,78 @@
         android:gravity="center_vertical"
         android:padding="5dp">
 
+        <CheckBox
+            android:id="@+id/item_spcar_select"
+            android:theme="@style/MyCheckBox"
+            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+             />
+
+
         <ImageView
-            android:id="@+id/item_sphst_iv"
+            android:id="@+id/item_spcar_iv"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/item_spcar_select"
             android:src="@mipmap/icon" />
 
         <TextView
-            android:id="@+id/item_sphst_tv_name"
+            android:id="@+id/item_spcar_tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/item_sphst_iv"
+            android:layout_toRightOf="@id/item_spcar_iv"
             android:text="农夫三拳"
             android:textColor="@color/black"
             android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/item_sphst_tv_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/item_sphst_tv_name"
-            android:gravity="right"
-            android:text="￥1.2"
-            android:textColor="@color/black"
-            android:textSize="12sp"
-
-            />
 
         <TextView
-            android:id="@+id/item_sphst_tv_info"
+            android:id="@+id/item_spcar_tv_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/item_sphst_tv_name"
+            android:layout_below="@+id/item_spcar_tv_name"
             android:layout_alignParentRight="true"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="30dp"
-            android:layout_toRightOf="@id/item_sphst_iv"
+            android:layout_toRightOf="@id/item_spcar_iv"
             android:text="真好喝"
+            android:maxLines="2"
             android:textColor="@color/nav_normal"
             android:textSize="12sp" />
 
+
         <TextView
-            android:id="@+id/item_sphst_tv_num"
+            android:id="@+id/item_spcar_tv_price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/item_sphst_tv_info"
+            android:layout_below="@+id/item_spcar_tv_info"
             android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/item_sphst_iv"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/item_spcar_iv"
+            android:gravity="right"
+            android:text="￥1.2"
+            android:textColor="@color/red"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/item_spcar_tv_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/item_spcar_tv_info"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/item_spcar_tv_price"
             android:gravity="right"
             android:text="x20"
             android:textColor="@color/nav_normal"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/item_sphst_tv_money"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/item_sphst_tv_info"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="10dp"
-            android:layout_toRightOf="@id/item_sphst_iv"
-            android:gravity="right"
-            android:text="实付：￥6.0（免运费）"
-            android:textColor="@color/red"
-            android:textSize="12sp" />
+            android:textSize="16sp" />
 
     </RelativeLayout>
-
-
 
 
 </LinearLayout>

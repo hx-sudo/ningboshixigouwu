@@ -57,7 +57,6 @@ public class TypeFragment extends BaseFragment {
         //4.设置点击事件
         setListener();
 
-
         return view;
     }
 
@@ -95,7 +94,6 @@ public class TypeFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 typeAdapter.setClickPoos(position);//点击事件发生，改变被点击位置，adapter内部监听处理点击状态颜色事件
                 changeRightPage(position);//点击切换商品页面， 切换右侧的页面
-
             }
         });
     }
@@ -128,15 +126,12 @@ public class TypeFragment extends BaseFragment {
                 return false;
             }
         });
-
     }
     //点击搜索要做的操作
     private void search() {
         Intent intent=new Intent(getActivity(), SearchActivity.class);
         intent.putExtra("goodsname",searchEt.getText().toString().trim());
         startActivity(intent);
-        Toast.makeText(getContext(),"分类",Toast.LENGTH_SHORT).show();
-
 
     }
 

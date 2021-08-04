@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/spcar_title"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/whitesmoke">
+
+        <ImageView
+            android:id="@+id/spcar_iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="购物车"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="10dp"
+            android:text="删除"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="" />
+
+
+    </RelativeLayout>
+
+
+    <ListView
+        android:id="@+id/spcar_listv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_layout"
+        android:layout_below="@id/spcar_title"
+        android:layout_weight="1"
+        android:padding="5dp"
+        android:cacheColorHint="@color/black"
+        android:divider="@color/whitesmoke"
+        android:dividerHeight="5dp" />
+
+
+    <RelativeLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/white">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/whitesmoke"/>
+
+        <CheckBox
+            android:id="@+id/spcar_allselect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:theme="@style/MyCheckBox"
+            style="@style/Widget.AppCompat.CompoundButton.RadioButton"
+            android:text="全选"
+            android:textColor="@color/nav_normal"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/spcar_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@id/spcar_totalmoney"
+            android:text="总计："
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/spcar_totalmoney"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/spcar_buy"
+            android:text="￥0.0"
+            android:textColor="@color/red"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/spcar_buy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/et_bg4"
+            android:paddingLeft="30dp"
+            android:paddingTop="6dp"
+            android:paddingRight="30dp"
+            android:paddingBottom="6dp"
+            android:text="  结算  "
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textStyle="bold" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,24 +1,35 @@
 package com.example.nbshoping.login;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+
 import com.example.nbshoping.R;
 import com.example.nbshoping.utils.BaseActivity;
+import com.example.nbshoping.utils.ChangeHeadDialog;
 import com.example.nbshoping.utils.SaveUserUtils;
 import com.example.nbshoping.utils.URLUtils;
 import com.google.gson.Gson;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -30,7 +41,7 @@ public class PersonCenterActivity extends BaseActivity {
     TextView tvidtel, tvnickname, tvname, tvaddress, tvsave;
     ImageView headiv, nicknameiv, nameiv, addressiv, backiv;
     private String nickname,name,address;//修改后数据
-    //todo 目前项目仅仅改了三个参数，还有头像未改变
+    String imgpath;//保存文件的路径
 
 
     @Override
@@ -38,6 +49,7 @@ public class PersonCenterActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personcenter);
         userInfo = SaveUserUtils.getUserInfo(this);
+        imgpath=URLUtils.getImgPath(this,userInfo.getPhone());
         initView();
         showInfoInit(userInfo);//展示之前登录存储的用户信息
 
@@ -60,6 +72,16 @@ public class PersonCenterActivity extends BaseActivity {
         tvnickname.setText(userInfo.getNickname());
         tvname.setText(userInfo.getName());
         tvaddress.setText(userInfo.getAddress());
+
+        //显示头像
+        File file=new File(imgpath);
+        if (file.exists()) {
+            Bitmap bitmap= BitmapFactory.decodeFile(imgpath);
+            headiv.setImageBitmap(bitmap);
+        }else {
+            //文件不存在,默认
+            headiv.setImageResource(R.mipmap.head1);
+        }
 
     }
 
@@ -97,7 +119,8 @@ public class PersonCenterActivity extends BaseActivity {
                     break;
                 case R.id.center_iv_head:
                     //个人中心头像
-                    Toast.makeText(getApplicationContext(),"该功能还在完善中！",Toast.LENGTH_SHORT).show();
+
+                    showChangeheadDialog();
                     break;
                 case R.id.center_iv_nickname_bt:
                     //个人中心名字
@@ -122,6 +145,57 @@ public class PersonCenterActivity extends BaseActivity {
             }
         }
     };
+//    显示个人中心头像对话框
+    private void showChangeheadDialog() {
+        ChangeHeadDialog dialog=new ChangeHeadDialog(this);
+        dialog.show();//先显示
+        dialog.setDialogWidth();
+        dialog.setOnChangeheadListener(new ChangeHeadDialog.OnChangeheadListener() {
+            @Override
+            public void clickCamear() {//照相机
+                Intent intent =new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(intent,100);
+            }
+            @Override
+            public void clickLocal() {//本地
+
+            }
+        });
+
+
+    }
+
+    //activity返回
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode== Activity.RESULT_OK && requestCode==100) {//相机返回
+            Bundle bundle=data.getExtras();
+            Bitmap bm=(Bitmap)bundle.get("data");
+            headiv.setImageBitmap(bm);//展示
+            saveBitmap(bm);
+
+
+        }
+
+    }
+
+
+    //保存头像到本地
+    private void saveBitmap(Bitmap bm) {
+
+        FileOutputStream fos= null;
+        try {
+            fos = new FileOutputStream(imgpath);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        bm.compress(Bitmap.CompressFormat.JPEG,88,fos);
+
+
+
+
+    }
 
     //修改未保存
     private void issave() {
@@ -229,6 +303,8 @@ public class PersonCenterActivity extends BaseActivity {
                 break;
         }
     }
+
+
 
 
     /*数据格式判断
