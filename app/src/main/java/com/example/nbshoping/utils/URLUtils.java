@@ -48,12 +48,13 @@ public class URLUtils {
     public static String insertShoppingCar_url=PUBLIC_URL+"/trade/insertShoppingCar";
     // 查询购物车
     public static String queryShoppingCar_url=PUBLIC_URL+"/trade/queryShoppingCar?userId=";
-    // 购物车中商品下单支付 post
-    public static String orderShopping_url=PUBLIC_URL+"/trade/orderShopping?id=?userId=?commodityId=?commodityId=";
+    // 购物车中商品下单支付 post   {"commodityId":10,"count":3,"id":557,"userId":95}
+    public static String orderShopping_url=PUBLIC_URL+"/trade/orderShopping?id=?userId=?commodityId=?count=";
     //直接购买（不进入购物车） post
     public static String insertBought_url=PUBLIC_URL+"/trade/insertBought";
     // 查询已购买商品,内网
     public static String queryBougth_url=PUBLIC_URL+"/trade/querybougth?userId=";
+
 
 
     //图片本地地址

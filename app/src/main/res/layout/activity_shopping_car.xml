@@ -28,6 +28,7 @@
             android:textSize="20dp"
             android:textStyle="" />
         <TextView
+            android:id="@+id/spcar_tv_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -49,7 +50,6 @@
         android:layout_above="@+id/bottom_layout"
         android:layout_below="@id/spcar_title"
         android:layout_weight="1"
-        android:padding="5dp"
         android:cacheColorHint="@color/black"
         android:divider="@color/whitesmoke"
         android:dividerHeight="5dp" />

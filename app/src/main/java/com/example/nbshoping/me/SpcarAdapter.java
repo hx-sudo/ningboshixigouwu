@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.nbshoping.R;
@@ -19,11 +20,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class SpcarAdapter extends BaseAdapter {
+public class SpcarAdapter extends BaseAdapter implements View.OnClickListener
+{
     Context context;
     List<SphstBean.DataBean> data;
     // 用来控制CheckBox的选中状况
     private  HashMap<Integer, Boolean> isSelected;
+    private InnerItemOnclickListener mListener;
+
 
     public SpcarAdapter(Context context, List<SphstBean.DataBean> data,HashMap<Integer, Boolean> isSelected) {
         this.context = context;
@@ -67,6 +71,12 @@ public class SpcarAdapter extends BaseAdapter {
         }
         //fixme
 //        Log.i("hash.size", String.valueOf(isSelected.size()));
+
+        vh.checkBox.setOnClickListener(this);
+        vh.layout.setOnClickListener(this);
+        vh.checkBox.setTag(position);
+        vh.layout.setTag(position);
+
         SphstBean.DataBean dataBean = data.get(position);
         vh.nameTv.setText(dataBean.getCommodityName());
         vh.infoTv.setText(dataBean.getCommodityInfo());
@@ -74,7 +84,6 @@ public class SpcarAdapter extends BaseAdapter {
         vh.numTv.setText("x" + dataBean.getCount());
         // 根据isSelected来设置checkbox的选中状况 todo
         vh.checkBox.setChecked(isSelected.get(position));
-
 
         String photo = dataBean.getCommodityPhoto();//设置网络图片,先获取路径
         if (!TextUtils.isEmpty(photo)) {
@@ -85,20 +94,29 @@ public class SpcarAdapter extends BaseAdapter {
     }
 
 
-//    public  HashMap<Integer, Boolean> getIsSelected() {
-//        return isSelected;
-//    }
-
     public  void setIsSelected(HashMap<Integer, Boolean> isSelected) {
         this.isSelected = isSelected;
     }
 
+    interface InnerItemOnclickListener {
+        void itemClick(View v);
+    }
+
+    public void setOnInnerItemOnClickListener(InnerItemOnclickListener listener){
+        this.mListener=listener;
+    }
+
+    @Override
+    public void onClick(View v) {
+        mListener.itemClick(v);
+    }
 
     class VH {
 
         TextView nameTv, infoTv, priceTv, numTv;
         ImageView iv;
         CheckBox checkBox;
+        RelativeLayout layout;
 
         public VH(View v) {
             nameTv = v.findViewById(R.id.item_spcar_tv_name);
@@ -107,6 +125,7 @@ public class SpcarAdapter extends BaseAdapter {
             numTv = v.findViewById(R.id.item_spcar_tv_num);
             iv = v.findViewById(R.id.item_spcar_iv);
             checkBox = v.findViewById(R.id.item_spcar_select);
+            layout=v.findViewById(R.id.item_spcar_goodslayout);
         }
     }
 }

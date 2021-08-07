@@ -42,7 +42,7 @@ public class WelcomeActivity extends AppCompatActivity {
             if (msg.what == 1) {
                 Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
                 startActivity(intent);
-                finish();//todo
+                finish();
             }
         }
     };

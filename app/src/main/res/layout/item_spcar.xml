@@ -14,74 +14,83 @@
 
         <CheckBox
             android:id="@+id/item_spcar_select"
-            android:theme="@style/MyCheckBox"
             style="@style/Widget.AppCompat.CompoundButton.RadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             />
+            android:theme="@style/MyCheckBox" />
 
 
         <ImageView
             android:id="@+id/item_spcar_iv"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/item_spcar_select"
             android:src="@mipmap/icon" />
 
-        <TextView
-            android:id="@+id/item_spcar_tv_name"
+        <RelativeLayout
+            android:id="@+id/item_spcar_goodslayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/item_spcar_iv"
-            android:text="农夫三拳"
-            android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:gravity="center_vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/item_spcar_tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:text="农夫三拳"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
 
 
-        <TextView
-            android:id="@+id/item_spcar_tv_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/item_spcar_tv_name"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="30dp"
-            android:layout_toRightOf="@id/item_spcar_iv"
-            android:text="真好喝"
-            android:maxLines="2"
-            android:textColor="@color/nav_normal"
-            android:textSize="12sp" />
+            <TextView
+                android:id="@+id/item_spcar_tv_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_spcar_tv_name"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_alignParentLeft="true"
+                android:maxLines="2"
+                android:text="真好喝"
+                android:textColor="@color/nav_normal"
+                android:textSize="12sp" />
 
 
-        <TextView
-            android:id="@+id/item_spcar_tv_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/item_spcar_tv_info"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/item_spcar_iv"
-            android:gravity="right"
-            android:text="￥1.2"
-            android:textColor="@color/red"
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/item_spcar_tv_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_spcar_tv_info"
+                android:layout_marginLeft="10dp"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="10dp"
+                android:gravity="right"
+                android:text="￥1.2"
+                android:textColor="@color/red"
+                android:textSize="16sp" />
 
-        <TextView
-            android:id="@+id/item_spcar_tv_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/item_spcar_tv_info"
-            android:layout_alignParentRight="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_toRightOf="@id/item_spcar_tv_price"
-            android:gravity="right"
-            android:text="x20"
-            android:textColor="@color/nav_normal"
-            android:textSize="16sp" />
+            <TextView
+                android:id="@+id/item_spcar_tv_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/item_spcar_tv_info"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_toRightOf="@id/item_spcar_tv_price"
+                android:gravity="right"
+                android:text="x20"
+                android:textColor="@color/nav_normal"
+                android:textSize="16sp" />
+        </RelativeLayout>
 
     </RelativeLayout>
 

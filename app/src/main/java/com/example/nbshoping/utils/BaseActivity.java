@@ -35,6 +35,13 @@ public class BaseActivity extends AppCompatActivity implements Callback.CommonCa
         requestParams.setBodyContentType("application/json;charset=utf-8");
         x.http().post(requestParams, this);//传参请求
     }
+    public void postNetwork(String url, String json){//第二种方式
+        RequestParams params = new RequestParams(url);
+        params.setAsJsonContent(true);
+        params.setBodyContentType("application/json;charset=utf-8");
+        params.setBodyContent(json);
+        x.http().post(params,this);
+    }
 
     //获取
     public void getNetword(String url)//无参格式?categoryId=";

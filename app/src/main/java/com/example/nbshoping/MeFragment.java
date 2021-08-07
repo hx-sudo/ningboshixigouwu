@@ -121,6 +121,7 @@ public class MeFragment extends Fragment {
                     }else{
                         Intent intent=new Intent(getActivity(), ShoppingCarActivity.class);
                         startActivity(intent);
+
                     }
                     break;
                 case R.id.me_sphistory_btn:

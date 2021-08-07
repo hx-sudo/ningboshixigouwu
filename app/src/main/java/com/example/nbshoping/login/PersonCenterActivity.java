@@ -157,7 +157,9 @@ public class PersonCenterActivity extends BaseActivity {
                 startActivityForResult(intent,100);
             }
             @Override
-            public void clickLocal() {//本地
+            public void clickLocal() {//选取本地照片
+                Intent intent =new Intent(PersonCenterActivity.this,LocalImgActivity.class);
+                startActivityForResult(intent,200);
 
             }
         });
@@ -175,6 +177,13 @@ public class PersonCenterActivity extends BaseActivity {
             headiv.setImageBitmap(bm);//展示
             saveBitmap(bm);
 
+        }
+        if (requestCode==200 && resultCode ==Activity.RESULT_OK)//本地图片获取返回
+        {
+            String fpath=data.getStringExtra("fpath");
+            Bitmap bitmap=BitmapFactory.decodeFile(fpath);
+            headiv.setImageBitmap(bitmap);
+            saveBitmap(bitmap);
 
         }
 
@@ -183,7 +192,6 @@ public class PersonCenterActivity extends BaseActivity {
 
     //保存头像到本地
     private void saveBitmap(Bitmap bm) {
-
         FileOutputStream fos= null;
         try {
             fos = new FileOutputStream(imgpath);
@@ -191,9 +199,6 @@ public class PersonCenterActivity extends BaseActivity {
             e.printStackTrace();
         }
         bm.compress(Bitmap.CompressFormat.JPEG,88,fos);
-
-
-
 
     }
 
@@ -303,8 +308,6 @@ public class PersonCenterActivity extends BaseActivity {
                 break;
         }
     }
-
-
 
 
     /*数据格式判断

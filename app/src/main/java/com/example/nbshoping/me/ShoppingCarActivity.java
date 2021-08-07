@@ -25,20 +25,24 @@ import com.google.gson.Gson;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-public class ShoppingCarActivity extends BaseActivity {
-    List<SphstBean.DataBean> data;
+public class ShoppingCarActivity extends BaseActivity implements SpcarAdapter.InnerItemOnclickListener,
+        AdapterView.OnItemClickListener {
+    List<SphstBean.DataBean> data;//数据源
     SpcarAdapter spcarAdapter;//适配器
     ListView spcarLv;
     ImageView backiv;
+    TextView deleteTv;
     private UserBean.DataBean userInfo = null;//之前登陆时保存的用户信息
 
     CheckBox allCB;//全选
     TextView ensureTv, moneyTv;//购买总金额
+    double money = 0.0;//购买总金额
     private boolean ismChecked = false;//全选
     // 用来控制CheckBox的选中状况
     private HashMap<Integer, Boolean> isSelected;
@@ -49,7 +53,6 @@ public class ShoppingCarActivity extends BaseActivity {
         setContentView(R.layout.activity_shopping_car);
         userInfo = SaveUserUtils.getUserInfo(this);
         initView();
-        //当前右侧商品信息fragmment中的list
         spcarLv = findViewById(R.id.spcar_listv);//listview
         //数据源
         data = new ArrayList<>();
@@ -61,10 +64,18 @@ public class ShoppingCarActivity extends BaseActivity {
         Log.i("url", URLUtils.queryShoppingCar_url + userInfo.getId());
         getNetword(URLUtils.queryShoppingCar_url + userInfo.getId());
 
-        //设置点击事件listview
-        setListener();
+        //设置点击事件listview fix
+//        setListener();
         myClick();
+        spcarLv.setOnItemClickListener(this);
+        spcarAdapter.setOnInnerItemOnClickListener(this);
 
+
+    }
+
+    //显示总金额
+    private void showMoney(Double money) {
+        moneyTv.setText("￥" + money);
     }
 
 
@@ -73,57 +84,85 @@ public class ShoppingCarActivity extends BaseActivity {
         super.onSuccess(result);
         SphstBean goodsBean = new Gson().fromJson(result, SphstBean.class);
         List<SphstBean.DataBean> list = goodsBean.getData();
+        if (goodsBean.getCode()==201) {
+            Toast.makeText(getApplicationContext(), "购物车空了！", Toast.LENGTH_SHORT).show();
+            return;
+        }
         data.addAll(list);
         for (int i = 0; i < data.size(); i++) {
             isSelected.put(i, false);
         }
+        money = 0.0;
         spcarAdapter.notifyDataSetChanged();
     }
 
-    /*给listview每一项设置点击事件*/
-    private void setListener() {
-
-
-        //todo 购物车单项点击，checkbox 修改isSelect
-        spcarLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-            }
-        });
-
-    }
 
     private void initView() {
         backiv = findViewById(R.id.spcar_iv_back);
         allCB = findViewById(R.id.spcar_allselect);
         ensureTv = findViewById(R.id.spcar_buy);
         moneyTv = findViewById(R.id.spcar_totalmoney);
+        deleteTv = findViewById(R.id.spcar_tv_delete);
 
 
         ensureTv.setOnClickListener(listener);
         backiv.setOnClickListener(listener);
-
+        deleteTv.setOnClickListener(listener);
 
     }
 
+
+    /**
+     * java
+     * <p>
+     * 提供精确的减法运算。
+     *
+     * @param v1 被减数
+     * @param v2 减数
+     * @return 两个参数的差
+     */
+    public double sub(double v1, double v2) {
+        BigDecimal b1 = new BigDecimal(Double.toString(v1));
+        BigDecimal b2 = new BigDecimal(Double.toString(v2));
+        return b1.subtract(b2).doubleValue();
+    }
+
+    public double add(double v1, double v2) {
+        BigDecimal b1 = new BigDecimal(Double.toString(v1));
+        BigDecimal b2 = new BigDecimal(Double.toString(v2));
+        return b1.add(b2).doubleValue();
+    }
+
+
+    //购买和全选点击事件
     private void myClick() {
 //      外面的全选
-        allCB.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        allCB.setOnClickListener(new View.OnClickListener() {
+            //setChecked 无监听
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onClick(View v) {
+                //通过checkbox的isChecked()方法判断是否选中
+                CheckBox checkBox = v.findViewById(R.id.spcar_allselect);
+                boolean isChecked = checkBox.isChecked();
                 ismChecked = isChecked;
 //              全选是选中状态
                 if (isChecked) {
+                    money = 0.0;
                     for (int i = 0; i < data.size(); i++) {
                         isSelected.put(i, true);
+                        money = add(money, data.get(i).getTotalprices());
+                        Log.i("monet", "" + money);
                     }
+                    showMoney(money);
                     spcarAdapter.notifyDataSetChanged();
 
                 } else {
                     for (int i = 0; i < data.size(); i++) {
                         isSelected.put(i, false);
                     }
+                    money = 0.0;
+                    Log.i("monet", "" + money);
+                    showMoney(money);
                     spcarAdapter.notifyDataSetChanged();
 
                 }
@@ -162,32 +201,47 @@ public class ShoppingCarActivity extends BaseActivity {
         for (int i = 0; i < data.size(); i++) {
             if (isSelected.get(i) == true) {
                 SphstBean.DataBean dataBean = data.get(i);
-                Pa p = new Pa(String.valueOf(dataBean.getId()), String.valueOf(dataBean.getUserId()),
+                //网络请求数据格式
+                Pa p = new Pa(String.valueOf(dataBean.getId()), String.valueOf(userInfo.getId()),
                         String.valueOf(dataBean.getCommodityId()), String.valueOf(dataBean.getCount()));
-
-                data.remove(i);
                 list.add(p);
             }
         }
         String s = new Gson().toJson(list);
+        Log.i("root", "gson: s===" + s);
+        Log.i("root", "list: s===" + list);
 
         RequestParams requestParams = new RequestParams(URLUtils.orderShopping_url);
         requestParams.setBodyContent(s);
         requestParams.setAsJsonContent(true);//设置内容，形式
+        Log.i("url", requestParams.getUri());
         requestParams.setBodyContentType("application/json;charset=utf-8");
-        x.http().post(requestParams, new CommonCallback<Object>() {
+        x.http().post(requestParams, new CommonCallback<String>() {
             @Override
-            public void onSuccess(Object result) {
+            public void onSuccess(String result) {
+                Log.i("result",result);
+
                 Toast.makeText(getApplicationContext(), "结算购买成功！", Toast.LENGTH_SHORT).show();
+
+                //整合购物车剩余内存数据，显示
+                for (int i = data.size() - 1; i >= 0; i--) {
+                    if (isSelected.get(i) == true) {
+                        data.remove(i);
+                    }
+                }
+
+                isSelected.clear();
                 for (int i = 0; i < data.size(); i++) {
                     isSelected.put(i, false);
                 }
                 spcarAdapter.notifyDataSetChanged();
-
             }
 
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
+                Log.i("eror", ex.getMessage());
+                Toast.makeText(getApplicationContext(), "结算购买失败！", Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -199,6 +253,48 @@ public class ShoppingCarActivity extends BaseActivity {
             }
         });//传参请求
 
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Log.e("整体item----->", position + "");
+
+    }
+
+    @Override
+    public void itemClick(View v) {
+        int position;
+        position = (Integer) v.getTag();
+        switch (v.getId()) {
+            case R.id.item_spcar_select:
+                if (ismChecked)
+                    allCB.setChecked(false);
+                CheckBox checkBox = v.findViewById(R.id.item_spcar_select);
+                if (checkBox.isChecked()) {
+                    isSelected.put(position, true);
+                    money = add(money, data.get(position).getTotalprices());
+                    Log.i("monet", "" + money);
+
+                    showMoney(money);
+                } else {
+                    isSelected.put(position, false);
+                    money = sub(money, data.get(position).getTotalprices());
+                    Log.i("monet", "" + money);
+
+                    showMoney(money);
+                }
+
+                Log.e("内部item--checkbox-->", position + "");
+                Log.e("内部item--checkbox-->", position + " " + checkBox.isChecked());
+
+                break;
+            case R.id.item_spcar_goodslayout:
+                Log.e("内部item--goods-->", position + "");
+                break;
+            default:
+                break;
+        }
 
     }
 

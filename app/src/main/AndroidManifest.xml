@@ -3,13 +3,11 @@
     package="com.example.nbshoping">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<!--动态申请，危险权限-->
-    <uses-permission android:name="android.permission.CAMERA" />     <!-- 打开照相机权限 -->
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /><!-- SD卡权限 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> <!-- 动态申请，危险权限 -->
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 打开照相机权限 -->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:windowSoftInputMode="adjustResize|stateHidden"
         android:name=".MyApp"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
@@ -18,8 +16,10 @@
         android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nbshoping"
-        android:usesCleartextTraffic="true">
-<!--        由欢迎界面跳转到主界面-->
+        android:usesCleartextTraffic="true"
+        android:windowSoftInputMode="adjustResize|stateHidden">
+        <activity android:name=".login.LocalImgActivity" />
+        <!-- 由欢迎界面跳转到主界面 -->
         <activity android:name=".WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,7 +28,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".me.ShoppingCarActivity" />
-        <activity android:name=".me.SpcarActivity" />
         <activity android:name=".fpage.CategoryActivity" />
         <activity android:name=".me.ShoppingHstActivity" />
         <activity android:name=".goods.SearchActivity" />
@@ -40,9 +39,7 @@
         <activity android:name=".login.PersonCenterActivity" />
         <activity android:name=".me.AboutActivity" />
         <activity android:name=".login.LoginRegActivity" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

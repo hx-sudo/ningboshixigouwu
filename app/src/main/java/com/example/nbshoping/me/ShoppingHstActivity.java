@@ -26,6 +26,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import static java.security.AccessController.getContext;
@@ -63,10 +64,14 @@ public class ShoppingHstActivity extends BaseActivity {
     public void onSuccess(String result) {
         super.onSuccess(result);
         SphstBean goodsBean =new Gson().fromJson(result,SphstBean.class);
+
         List<SphstBean.DataBean> list=goodsBean.getData();
+        Collections.reverse(list);     //实现list集合逆序排列
         data.addAll(list);
         sphstAdapter.notifyDataSetChanged();
     }
+
+
 
     /*给listview每一项设置点击事件*/
     private void setListener() {

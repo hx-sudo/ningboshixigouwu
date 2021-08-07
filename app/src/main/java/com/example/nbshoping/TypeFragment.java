@@ -33,7 +33,7 @@ import java.util.List;
  * */
 public class TypeFragment extends BaseFragment {
     ListView typeLv;
-    EditText searchEt;//todo
+    EditText searchEt;
     List<TypeBean.DataBean> data;//数据源
     private TypeAdapter typeAdapter;
     private FragmentManager fm;

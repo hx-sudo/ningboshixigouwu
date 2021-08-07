@@ -65,7 +65,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:gravity="center"
-        android:text="软件作者"
+        android:text=""
         android:textColor="@color/nav_normal"
         android:textSize="16sp"
         android:textStyle="normal" />
@@ -85,7 +85,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="第一小组 版权所有"
+        android:text="作者 版权所有"
         android:textColor="#A9A9A9 "
         android:textStyle="normal" />
 

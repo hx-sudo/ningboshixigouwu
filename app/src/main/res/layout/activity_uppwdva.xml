@@ -49,11 +49,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/uppwd_q_tv"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/et_bg"
-        android:enabled="false" />
+        android:layout_marginTop="10dp"
+        android:enabled="false"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/uppwd_q_ev"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/divider" />
+
 
     <TextView
         android:id="@+id/uppwd_a_tv"
@@ -74,12 +82,18 @@
         android:layout_below="@+id/uppwd_a_tv"
         android:textSize="18sp"
         android:textColor="@color/black"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/et_bg"
+        android:layout_marginTop="10dp"
 
         />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/uppwd_a_ev"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@color/divider" />
 
     <Button
         android:id="@+id/uppwd_sure_btn"
