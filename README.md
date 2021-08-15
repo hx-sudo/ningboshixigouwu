@@ -9,20 +9,18 @@
 #### 部分界面，仅部分图片
 
 注册与登录界面
-<img src="https://img-blog.csdnimg.cn/2020102116384135.png" width="100px">
-![登录](https://images.gitee.com/uploads/images/2021/0815/102516_368a0809_7489189.png "PSZ9Z7JW7EV`_[A5IN[I%09.png")
-![注册](https://images.gitee.com/uploads/images/2021/0815/102533_1291c303_7489189.png "I)QY3VOW25QFD53)$F8)LEJ.png")
+<img src="https://images.gitee.com/uploads/images/2021/0815/102516_368a0809_7489189.png" width="100px">
+<img src="https://images.gitee.com/uploads/images/2021/0815/102533_1291c303_7489189.png" width="300px">
+
 
 个人中心
-
-![左边侧滑](https://images.gitee.com/uploads/images/2021/0815/102605_cd0f1e22_7489189.png "0BR)43`M]{2VP3DZN8%4%42.png")
-![我的](https://images.gitee.com/uploads/images/2021/0815/102629_abc5ac00_7489189.png "4V%I`%4~RF[$UJ3`R6GD}HU.png")
+<img src="https://images.gitee.com/uploads/images/2021/0815/102605_cd0f1e22_7489189.png" width="300px">
+<img src="https://images.gitee.com/uploads/images/2021/0815/102629_abc5ac00_7489189.png" width="300px">
 
 商品
-
-![分类](https://images.gitee.com/uploads/images/2021/0815/102655_b3c28077_7489189.png "@(GM79C)22S[6[$38915@]F.png")
-![首页](https://images.gitee.com/uploads/images/2021/0815/102739_53fe012d_7489189.png "W_%]VB`JQJK5LJ`@Y4LTRPI.png")
-![商品详情](https://images.gitee.com/uploads/images/2021/0815/102758_aca51f62_7489189.png "EO(]3V3DDW]HA`VS7PYN693.png")
+<img src="https://images.gitee.com/uploads/images/2021/0815/102655_b3c28077_7489189.png" width="300px">
+<img src="https://images.gitee.com/uploads/images/2021/0815/102739_53fe012d_7489189.png" width="300px">
+<img src="https://images.gitee.com/uploads/images/2021/0815/102758_aca51f62_7489189.png" width="300px">
 
 
 模拟器：夜神模拟器
