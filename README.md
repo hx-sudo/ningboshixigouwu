@@ -8,19 +8,20 @@
 
 #### 部分界面，仅部分图片
 
-注册与登录界面
-<img src="https://images.gitee.com/uploads/images/2021/0815/102516_368a0809_7489189.png" width="100px">
-<img src="https://images.gitee.com/uploads/images/2021/0815/102533_1291c303_7489189.png" width="300px">
+注册与登录界面  
+
+<img src="https://images.gitee.com/uploads/images/2021/0815/102516_368a0809_7489189.png" width="200px">
+<img src="https://images.gitee.com/uploads/images/2021/0815/102533_1291c303_7489189.png" width="200px">
 
 
-个人中心
-<img src="https://images.gitee.com/uploads/images/2021/0815/102605_cd0f1e22_7489189.png" width="300px">
-<img src="https://images.gitee.com/uploads/images/2021/0815/102629_abc5ac00_7489189.png" width="300px">
+个人中心  
+<img src="https://images.gitee.com/uploads/images/2021/0815/102605_cd0f1e22_7489189.png" width="200px">
+<img src="https://images.gitee.com/uploads/images/2021/0815/102629_abc5ac00_7489189.png" width="200px">
 
-商品
-<img src="https://images.gitee.com/uploads/images/2021/0815/102655_b3c28077_7489189.png" width="300px">
-<img src="https://images.gitee.com/uploads/images/2021/0815/102739_53fe012d_7489189.png" width="300px">
-<img src="https://images.gitee.com/uploads/images/2021/0815/102758_aca51f62_7489189.png" width="300px">
+商品  
+<img src="https://images.gitee.com/uploads/images/2021/0815/102655_b3c28077_7489189.png" width="200px">
+<img src="https://images.gitee.com/uploads/images/2021/0815/102739_53fe012d_7489189.png" width="200px">
+<img src="https://images.gitee.com/uploads/images/2021/0815/102758_aca51f62_7489189.png" width="200px">
 
 
 模拟器：夜神模拟器
